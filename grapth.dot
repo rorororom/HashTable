@@ -1,0 +1,14 @@
+digraph structs {
+	rankdir=LR;
+	graph [bgcolor="#fff5ee"]
+	node[color="#b02f15",fontsize=14];
+splines = ortho;
+	edge[fontsize=22];
+
+
+0x603000001b10[shape=Mrecord, style=filled, fillcolor="#bba6cd",label=" id: 0x603000001b10 |value: and |<f0> next: 0x603000001ba0 |<f1> prev: 0xbebebebebebebebe ",color = "#552d7b"];
+6928 -> 7072[weight = 1000000, color = "#fff5ee"];
+0x603000001ba0[shape=Mrecord, style=filled, fillcolor="#bba6cd",label=" id: 0x603000001ba0 |value: are |<f0> next: 0x603000001c60 |<f1> prev: 0x603000001b10 ",color = "#552d7b"];
+7072 -> 7264[weight = 1000000, color = "#fff5ee"];
+0x603000001c60[shape=Mrecord, style=filled, fillcolor="#bba6cd",label=" id: 0x603000001c60 |value: am |<f0> next: 0x0 |<f1> prev: 0x603000001ba0 ",color = "#552d7b"];
+7264 -> 0[weight = 1000000, color = "#fff5ee"];
