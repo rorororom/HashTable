@@ -6,11 +6,11 @@
 
 #include "./hash/hash_table.h"
 #include "./hash/hash_func.h"
-#include "list.h"
-#include "log.h"
+#include "./list/list.h"
+#include "./list/log.h"
 #include "./text_tools/read_file_in_buffer.h"
 
-void writeToFile(const char* filename, struct HashTable* ht) {
+void writeToFileResult(const char* filename, struct HashTable* ht) {
     FILE* file = fopen(filename, "w");
     if (file == NULL) {
         printf("Ошибка открытия файла.\n");
@@ -55,7 +55,7 @@ void dispersion(struct HashTable* ht) {
 
 int main()
 {
-    OpenLogFile("LOGE1111.html", "w");
+    OpenLogFile("LOGE", "w");
     List list = {};
     CtorList(&list);
 
@@ -66,22 +66,21 @@ int main()
                                     0};
     MainFuncReadFile(&source);
 
-    struct HashTable* ht = HT_Create(reinterpret_cast<key_type (*)(value_type)>(hash_function7));
+    struct HashTable* ht = HT_Create(reinterpret_cast<key_type (*)(value_type)>(hash_func3));
 
     for (size_t i = 0; i < source.words; i++) {
         add(source.textArray[i], ht);
     }
 
-    writeToFile("output7.txt", ht);
+    writeToFileResult("./result/output3(1).txt", ht);
     dispersion(ht);
+
+    int sum = 0;
+    for (size_t i = 0; i < ht->length; i++) {
+        sum += ht->array[i].length;
+    }
+
+    printf("load = %f\n", sum / (float)ht->length);
 
     return 0;
 }
-
-// func1 = 31412
-// func2 = 1923
-// func3 = 55
-// func4 = 3679
-// func5 = 12
-// func6 = 5
-// func7 = 3

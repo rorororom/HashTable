@@ -2,9 +2,9 @@
 #define HASH_TABLE
 
 #include <stdlib.h>
-#include "../list.h"
+#include "../list/list.h"
 
-const size_t HT_TABLE_SIZE  = 4001;
+const size_t HT_TABLE_SIZE  = 501;
 const int    START_CAPACITY = 100;
 typedef size_t key_type;
 typedef char* value_type;
