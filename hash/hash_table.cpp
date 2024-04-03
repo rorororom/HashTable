@@ -100,7 +100,6 @@ void LST_add(struct List* list, value_type value) {
 void add(char* key, struct HashTable* ht) {
     // Проверка наличия элемента
     if (is_element_present(key, ht)) {
-        printf("Элемент \"%s\" уже присутствует в хэш-таблице.\n", key);
         return;
     }
 

@@ -13,17 +13,17 @@ CXXFLAGS =  -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-
 			-fstack-protector -fstrict-overflow -fno-omit-frame-pointer -Wlarger-than=8192         \
 			-Wstack-usage=8192 -fsanitize=address -fsanitize=undefined -fPIE -Werror=vla
 
-SOURCES = main.cpp list.cpp log.cpp hash_func.cpp hash_table.cpp
+SOURCES = main.cpp list.cpp log.cpp
 OBJ_DIR = obj
 
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:%.cpp=%.o))
 
 COMMON_DIR_H = ./hash
-OUT_SOURCES_H = $(COMMON_DIR_H)/hash_func.cpp $(COMMON_DIR_H)/hash_table.cpp
+OUT_SOURCES_H = ./hash/hash_func.cpp ./hash/hash_table.cpp
 OUT_OBJECTS_H = $(addprefix $(OBJ_DIR)/, $(OUT_SOURCES_H:$(COMMON_DIR_H)/%.cpp=%.o))
 
 COMMON_DIR = ./text_tools
-OUT_SOURCES = $(COMMON_DIR)/read_file_in_buffer.cpp
+OUT_SOURCES = ./text_tools/read_file_in_buffer.cpp
 OUT_OBJECTS = $(addprefix $(OBJ_DIR)/, $(OUT_SOURCES:$(COMMON_DIR)/%.cpp=%.o))
 
 EXECUTABLE = hash
