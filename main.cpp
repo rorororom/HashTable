@@ -66,13 +66,13 @@ int main()
                                     0};
     MainFuncReadFile(&source);
 
-    struct HashTable* ht = HT_Create(reinterpret_cast<key_type (*)(value_type)>(hash_func3));
+    struct HashTable* ht = HT_Create(reinterpret_cast<key_type (*)(value_type)>(hash_func4_2));
 
     for (size_t i = 0; i < source.words; i++) {
         add(source.textArray[i], ht);
     }
 
-    writeToFileResult("./result/output3(1).txt", ht);
+    writeToFileResult("./result/output4(2).txt", ht);
     dispersion(ht);
 
     int sum = 0;

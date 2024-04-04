@@ -8,7 +8,7 @@
 List* LST_Create() {
     List* list = (List*)malloc(sizeof(List));
     if (list == NULL) {
-        return NULL; // Memory allocation failed
+        return NULL;
     }
 
     list->fixedElement = NULL;
@@ -37,7 +37,7 @@ void LST_Destroy(List* list) {
     Node* current = list->fixedElement;
     while (current != NULL) {
         Node* next = current->next;
-        free(current->value); // Assuming data is dynamically allocated
+        free(current->value);
         free(current);
         current = next;
     }
@@ -65,27 +65,22 @@ bool is_element_present(char* key, struct HashTable* ht) {
     Node* current = list->fixedElement;
     while (current != NULL) {
         if (strcmp(current->value, key) == 0) {
-            // Элемент уже присутствует в списке
-            return true;
+            return true;                            // Элемент уже присутствует в списке
         }
         current = current->next;
     }
-    // Элемент не найден
-    return false;
+    return false;                                   // Элемент не найден
 }
 
 void LST_add(struct List* list, value_type value) {
     assert(list);
-    // Створюємо новий вузол
     Node* new_node = (Node*)malloc(sizeof(Node));
     new_node->value = value;
-    new_node->next = NULL; // Новий вузол стає останнім, тому наступний буде NULL
+    new_node->next = NULL;
 
     if (list->fixedElement == NULL) {
-        // Якщо список порожній, новий елемент стає першим
         list->fixedElement = new_node;
     } else {
-        // Якщо список не порожній, додаємо новий елемент в кінець
         Node* current = list->fixedElement;
         while (current->next != NULL) {
             current = current->next;
@@ -96,14 +91,11 @@ void LST_add(struct List* list, value_type value) {
     list->length++;
 }
 
-// Добавление элемента в хэш-таблицу
 void add(char* key, struct HashTable* ht) {
-    // Проверка наличия элемента
-    if (is_element_present(key, ht)) {
+    if (is_element_present(key, ht)) {                      // Проверка наличия элемента
         return;
     }
 
-    // Вычисление хэша и добавление элемента в список
     key_type hash = ht->hash_function(key) % ht->length;
     LST_add(&ht->array[hash], key);
 }

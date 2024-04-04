@@ -16,10 +16,26 @@ key_type hash_func2(const char* key) {
 key_type hash_func3(const char* key) {
     size_t len = strlen(key);
     size_t sum_ASCII_code = 0;
+
     for (size_t i = 0; i < len; i++) {
         sum_ASCII_code += (int)key[i];
     }
+
     return sum_ASCII_code;
+}
+
+key_type hash_func4_2(const char* key) {
+    size_t len = strlen(key);
+    if (len == 0) {
+        return 1;
+    }
+
+    size_t sum_ASCII_code = 0;
+    for (size_t i = 0; i < len; i++) {
+        sum_ASCII_code += (int)key[i];
+    }
+
+    return (int)(sum_ASCII_code / len);
 }
 
 key_type hash_func4(const char* key) {
@@ -92,11 +108,11 @@ static const uint32_t crc_lookup_table[256] =
 key_type hash_function7(const char* data)
 {
     int size = strlen(data);
-   uint32_t crc = 0xffffffff;
-   unsigned char* str = (unsigned char*)data;
+    uint32_t crc = 0xffffffff;
 
-	while (size-- !=0)
-    {
+    unsigned char* str = (unsigned char*)data;
+
+	while (size-- !=0) {
         crc = crc_lookup_table[((uint8_t) crc ^ *(str++))] ^ (crc >> 8);
     }
     return ~crc;
