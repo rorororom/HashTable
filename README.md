@@ -400,7 +400,7 @@ int Strcmp(volatile const char* str1, volatile const char* str2) {
         "pcmpeqb %%xmm1, %%xmm0\n"    // cmp(str1, str2)
         "pmovmskb %%xmm0, %0\n"       // result = cmp(str1, str2)
         "test %0, %0\n"               // if result = 0 ----> result = 0
-        "setnz %0\n"                  // else          ----> result = 1
+        "setnz %1\n"                  // else          ----> result = 1
         : "=r" (result)
         : "r" (str1), "r" (str2)
         : "xmm0", "xmm1", "cc"
